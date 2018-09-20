@@ -196,7 +196,7 @@ export default class JpegCameraFlash extends JpegCameraBase {
   engineGetBlob(snapshot, mime, mirror, quality, callback) {
     let canvas;
     // eslint-disable-next-line no-param-reassign
-    if (!snapshot.extraCanvas) { snapshot.extraCanvas = this.engineGetCanvas(snapshot); }
+    if (!snapshot.extraCanvas) { snapshot.extraCanvas = this.engineGetcanvas(snapshot); }
 
     if (mirror) {
       canvas = document.createElement('canvas');

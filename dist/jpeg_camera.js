@@ -7,7 +7,7 @@
 		exports["JpegCamera"] = factory();
 	else
 		root["JpegCamera"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -80,7 +80,25 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-module.exports = function (self) {
+module.exports = function (self, options) {
+	options = Object.assign({}, options);
+
+	var filter = function filter(key) {
+		var match = function match(pattern) {
+			return typeof pattern === 'string' ? key === pattern : pattern.test(key);
+		};
+
+		if (options.include) {
+			return options.include.some(match);
+		}
+
+		if (options.exclude) {
+			return !options.exclude.some(match);
+		}
+
+		return true;
+	};
+
 	var _iteratorNormalCompletion = true;
 	var _didIteratorError = false;
 	var _iteratorError = undefined;
@@ -91,7 +109,7 @@ module.exports = function (self) {
 
 			var val = self[key];
 
-			if (key !== 'constructor' && typeof val === 'function') {
+			if (key !== 'constructor' && typeof val === 'function' && filter(key)) {
 				self[key] = val.bind(self);
 			}
 		}
@@ -111,6 +129,14 @@ module.exports = function (self) {
 	}
 
 	return self;
+};
+
+var excludedReactMethods = ['componentWillMount', 'UNSAFE_componentWillMount', 'render', 'getSnapshotBeforeUpdate', 'componentDidMount', 'componentWillReceiveProps', 'UNSAFE_componentWillReceiveProps', 'shouldComponentUpdate', 'componentWillUpdate', 'UNSAFE_componentWillUpdate', 'componentDidUpdate', 'componentWillUnmount', 'componentDidCatch', 'setState', 'forceUpdate'];
+
+module.exports.react = function (self, options) {
+	options = Object.assign({}, options);
+	options.exclude = (options.exclude || []).concat(excludedReactMethods);
+	return module.exports(self, options);
 };
 
 /***/ }),
@@ -1778,7 +1804,7 @@ var JpegCameraFlash = function (_JpegCameraBase) {
       var canvas = void 0;
       // eslint-disable-next-line no-param-reassign
       if (!snapshot.extraCanvas) {
-        snapshot.extraCanvas = this.engineGetCanvas(snapshot);
+        snapshot.extraCanvas = this.engineGetcanvas(snapshot);
       }
 
       if (mirror) {
