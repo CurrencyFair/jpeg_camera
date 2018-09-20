@@ -205,7 +205,7 @@ export default class JpegCameraHtml5 extends JpegCameraBase {
     return this.container.appendChild(this.displayedcanvas);
   }
 
-  engineGetcanvas(snapshot) {
+  engineGetCanvas(snapshot) {
     const canvas = document.createElement('canvas');
     canvas.width = snapshot.canvas.width;
     canvas.height = snapshot.canvas.height;

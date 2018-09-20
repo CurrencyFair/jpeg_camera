@@ -953,8 +953,8 @@ var JpegCameraHtml5 = function (_JpegCameraBase) {
       return this.container.appendChild(this.displayedcanvas);
     }
   }, {
-    key: 'engineGetcanvas',
-    value: function engineGetcanvas(snapshot) {
+    key: 'engineGetCanvas',
+    value: function engineGetCanvas(snapshot) {
       var canvas = document.createElement('canvas');
       canvas.width = snapshot.canvas.width;
       canvas.height = snapshot.canvas.height;
@@ -1804,7 +1804,7 @@ var JpegCameraFlash = function (_JpegCameraBase) {
       var canvas = void 0;
       // eslint-disable-next-line no-param-reassign
       if (!snapshot.extraCanvas) {
-        snapshot.extraCanvas = this.engineGetcanvas(snapshot);
+        snapshot.extraCanvas = this.engineGetCanvas(snapshot);
       }
 
       if (mirror) {
