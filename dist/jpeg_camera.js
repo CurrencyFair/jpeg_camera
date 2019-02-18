@@ -131,7 +131,7 @@ module.exports = function (self, options) {
 	return self;
 };
 
-var excludedReactMethods = ['componentWillMount', 'UNSAFE_componentWillMount', 'render', 'getSnapshotBeforeUpdate', 'componentDidMount', 'componentWillReceiveProps', 'UNSAFE_componentWillReceiveProps', 'shouldComponentUpdate', 'componentWillUpdate', 'UNSAFE_componentWillUpdate', 'componentDidUpdate', 'componentWillUnmount', 'componentDidCatch', 'setState', 'forceUpdate'];
+var excludedReactMethods = ['componentWillMount', 'render', 'componentDidMount', 'componentWillReceiveProps', 'shouldComponentUpdate', 'componentWillUpdate', 'componentDidUpdate', 'componentWillUnmount', 'componentDidCatch', 'setState', 'forceUpdate'];
 
 module.exports.react = function (self, options) {
 	options = Object.assign({}, options);
@@ -870,7 +870,8 @@ var JpegCameraHtml5 = function (_JpegCameraBase) {
           width: {
             min: 640,
             ideal: this.options.resolution
-          }
+          },
+          deviceId: { exact: this.options.deviceId }
         },
         audio: false
       }).then(function (stream) {
